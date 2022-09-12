@@ -40,13 +40,14 @@ pipeline {
         //     }
         //   }   
         // }
-        stage('Download-Tool-Dependencies') {
+        stage('Git Check') {
             steps {
                 container('master') {
                     withCredentials([gitUsernamePassword(credentialsId: 'Git_Pass', gitToolName: 'Default')]) {
                     sh '''
                         cd $WORKSPACE
-                        ls 
+                        ls
+                        git tag
                         echo ${tag}
                     '''
                     }
