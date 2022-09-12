@@ -47,7 +47,6 @@ pipeline {
                     sh '''
                         cd $WORKSPACE
                         ls
-                        git tag
                         echo ${tag}
                     '''
                     }
