@@ -32,14 +32,14 @@ pipeline {
     }
   }
     stages {
-        // stage("Git Repo checkout"){
-        //   steps{
-        //     container('master') {
-        //       sh("echo ${tag}")
-        //       checkout([$class: 'GitSCM', branches: [[name: 'refs/tags/${tag}']], extensions: [], userRemoteConfigs: [[credentialsId: 'Git_Pass', url: 'https://github.com/narendra-cloudthat/Myapp.git']]])
-        //     }
-        //   }   
-        // }
+        stage("Git Repo checkout"){
+          steps{
+            container('master') {
+              sh("echo ${tag}")
+              checkout([$class: 'GitSCM', branches: [[name: 'refs/tags/${tags}']], extensions: [], userRemoteConfigs: [[credentialsId: 'Git_Pass', url: 'https://github.com/narendra-cloudthat/Myapp.git']]])
+            }
+          }   
+        }
         stage('Git Check') {
             steps {
                 container('master') {
@@ -47,7 +47,7 @@ pipeline {
                     sh '''
                         cd $WORKSPACE
                         ls
-                        echo ${tag}
+                        echo ${tags}
                     '''
                     }
                 }
